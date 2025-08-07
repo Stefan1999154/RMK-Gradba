@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>RMK Gradba | Low-Rise Construction</title>
+  <style>
+    /* Make html and body take full height */
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      /* Full page background image */
+      background: url('background.jpg') no-repeat center center fixed;
+      background-size: cover;
+
+      font-family: Arial, sans-serif;
+      color: #333;
+    }
+
+    /* Transparent header */
+    header {
+      background: transparent;
+      padding: 40px 20px;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      color: white;
+    }
+
+    /* Remove header overlay */
+    header::before {
+      content: none;
+    }
+
+    .logo {
+      width: 300px;
+      height: auto;
+      display: block;
+      margin: 0 auto 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    header h1 {
+      font-size: 48px;
+      margin: 10px 0;
+    }
+
+    header p {
+      font-size: 20px;
+    }
+
+    nav {
+      margin-top: 20px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+    }
+
+    section {
+      padding: 40px;
+      max-width: 1000px;
+      margin: auto;
+      background: rgba(255, 255, 255, 0.9); /* white with some transparency */
+      border-radius: 8px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+      margin-bottom: 40px;
+    }
+
+    h2 {
+      color: #1d3557;
+      margin-bottom: 10px;
+    }
+
+    .services {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+
+    .service-box {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      transition: box-shadow 0.3s ease;
+    }
+    .service-box:hover {
+      box-shadow: 0 0 15px #1d3557;
+    }
+    .service-box h3 {
+      margin-top: 0;
+      color: #1d3557;
+    }
+
+    /* Detail area styles */
+    #service-detail {
+      margin-top: 40px;
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 0 12px rgba(0,0,0,0.15);
+      display: none; /* hidden by default */
+    }
+    #service-detail h3 {
+      margin-top: 0;
+      color: #1d3557;
+    }
+
+    #detail-images {
+      display: flex;
+      gap: 20px;
+      margin-top: 15px;
+      flex-wrap: wrap;
+    }
+    #detail-images img {
+      width: 48%;
+      height: auto;
+      border-radius: 5px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+      object-fit: cover;
+    }
+
+    @media (max-width: 600px) {
+      #detail-images {
+        flex-direction: column;
+      }
+      #detail-images img {
+        width: 100% !important;
+        margin-bottom: 15px;
+      }
+    }
+
+    #close-detail {
+      margin-top: 20px;
+      display: inline-block;
+      padding: 8px 15px;
+      background-color: #1d3557;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 35px;
+    }
+    #close-detail:hover {
+      background-color: #163150;
+    }
+
+    footer {
+      text-align: center;
+      background-color: #1d3557;
+      color: white;
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <img src="logo.png" alt="RMK Gradba Logo" class="logo" />
+    <h1>RMK Gradba</h1>
+    <p>Experts in Low-Rise Construction</p>
+    <nav>
+      <a href="#about">About Us</a>
+      <a href="#services">Services</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section id="about">
+    <h2>About Us</h2>
+    <p>
+      RMK Gradba is a professional construction company with extensive experience in low-rise infrastructure projects.
+      We specialize in the construction and maintenance of public and private infrastructure, delivering reliable and high-quality services across the region.
+    </p>
+  </section>
+
+  <section id="services">
+    <h2>Our Services</h2>
+    <div class="services">
+      <div class="service-box" onclick="showService('stormwater')">
+        <h3>Stormwater Drainage Systems</h3>
+        <p>Design and installation of efficient drainage systems to manage rainwater and prevent flooding.</p>
+      </div>
+      <div class="service-box" onclick="showService('sanitary')">
+        <h3>Sanitary Sewage Systems</h3>
+        <p>Construction and repair of sanitary sewer lines for residential, commercial, and municipal use.</p>
+      </div>
+      <div class="service-box" onclick="showService('concrete')">
+        <h3>Concrete Block Paving</h3>
+        <p>Street paving with high-quality concrete blocks for long-lasting and aesthetic urban design.</p>
+      </div>
+      <div class="service-box" onclick="showService('street')">
+        <h3>Street Construction & Asphalt</h3>
+        <p>Complete street construction including excavation, base prep, and professional asphalt paving.</p>
+      </div>
+      <div class="service-box" onclick="showService('water')">
+        <h3>Water Supply Networks</h3>
+        <p>Installation of reliable water distribution systems for urban and rural developments.</p>
+      </div>
+      <div class="service-box" onclick="showService('other')">
+        <h3>Other Low-Rise Works</h3>
+        <p>Comprehensive civil works including sidewalks, curbs, retaining walls, and related infrastructure.</p>
+      </div>
+    </div>
+
+    <!-- Service detail area -->
+    <div id="service-detail">
+      <h3 id="detail-title"></h3>
+      <p id="detail-text"></p>
+      <div id="detail-images"></div>
+      <button id="close-detail" onclick="closeDetail()">Close</button>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <p>Ready to start your next project with RMK Gradba? Get in touch with us today!</p>
+    <p>Email: <a href="mailto:rmkgradba@yahoo.com">info@rmkgradba.com</a></p>
+    <p>Phone: +389 78 233 925</p>
+    <p>Location: Skopje, North Macedonia</p>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 RMK Gradba. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const servicesData = {
+      stormwater: {
+        title: "Stormwater Drainage Systems",
+        text: "We design and install advanced stormwater drainage systems to effectively manage rainwater and reduce the risk of flooding in urban and rural areas. Our systems ensure sustainable water flow and protect properties.",
+        images: ["stormwater1.jpg", "stormwater2.jpg"],
+      },
+      sanitary: {
+        title: "Sanitary Sewage Systems",
+        text: "Our sanitary sewage services include construction, maintenance, and repair of sewer lines for residential, commercial, and municipal clients, ensuring safe and effective waste management.",
+        images: ["sanitary1.jpg", "sanitary2.jpg"],
+      },
+      concrete: {
+        title: "Concrete Block Paving",
+        text: "We provide street paving services using high-quality concrete blocks. This method guarantees durability, easy maintenance, and aesthetic appeal suitable for various urban designs.",
+        images: ["concrete1.jpg", "concrete2.jpg"],
+      },
+      street: {
+        title: "Street Construction & Asphalt",
+        text: "Our team handles complete street construction projects including excavation, base preparation, and professional asphalt paving to deliver smooth, durable roads.",
+        images: ["street1.jpg", "street2.jpg"],
+      },
+      water: {
+        title: "Water Supply Networks",
+        text: "Installation and maintenance of reliable water distribution networks to serve urban and rural developments efficiently, ensuring clean water availability.",
+        images: ["water1.jpg", "water2.jpg"],
+      },
+      other: {
+        title: "Other Low-Rise Works",
+        text: "We also undertake other low-rise civil works such as sidewalks, curbs, retaining walls, and related infrastructure to complete your project with quality and precision.",
+        images: ["other1.jpg", "other2.jpg"],
+      }
+    };
+
+    function showService(serviceKey) {
+      const detail = document.getElementById('service-detail');
+      const title = document.getElementById('detail-title');
+      const text = document.getElementById('detail-text');
+      const imagesContainer = document.getElementById('detail-images');
+
+      const service = servicesData[serviceKey];
+      if (!service) return;
+
+      title.textContent = service.title;
+      text.textContent = service.text;
+
+      // Clear previous images
+      imagesContainer.innerHTML = '';
+
+      // Add each image
+      service.images.forEach(src => {
+        const img = document.createElement('img');
+        img.src = src;
+        img.alt = service.title;
+        imagesContainer.appendChild(img);
+      });
+
+      detail.style.display = 'block';
+
+      detail.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function closeDetail() {
+      document.getElementById('service-detail').style.display = 'none';
+    }
+  </script>
+
+</body>
+</html>
