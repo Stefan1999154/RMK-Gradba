@@ -51,6 +51,10 @@
 
     nav {
       margin-top: 20px;
+      text-align: left;
+      max-width: 1000px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     nav a {
@@ -68,11 +72,16 @@
       border-radius: 8px;
       box-shadow: 0 0 15px rgba(0,0,0,0.2);
       margin-bottom: 40px;
+      text-align: left;
     }
 
     h2 {
       color: #1d3557;
       margin-bottom: 10px;
+      text-align: left;
+      max-width: 1000px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .services {
@@ -176,6 +185,112 @@
       color: white;
       padding: 20px;
     }
+
+    /* Gallery Styles */
+    #gallery {
+      max-width: 1000px;
+      margin: 40px auto 40px auto;
+      text-align: left;
+    }
+
+    #gallery h2 {
+      margin-bottom: 20px;
+    }
+
+    .gallery-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 15px;
+      justify-items: center;
+    }
+
+    .gallery-container img {
+      width: 100%;
+      max-width: 150px;
+      cursor: pointer;
+      border-radius: 5px;
+      box-shadow: 0 0 6px rgba(0,0,0,0.15);
+      transition: transform 0.3s ease;
+    }
+
+    .gallery-container img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 12px #1d3557;
+    }
+
+    /* Modal Styles */
+    #modal {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      padding-top: 60px;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background-color: rgba(0,0,0,0.9);
+    }
+
+    #modal-content {
+      margin: auto;
+      display: block;
+      max-width: 90%;
+      max-height: 80vh;
+      border-radius: 8px;
+      box-shadow: 0 0 15px black;
+    }
+
+    #modal-caption {
+      margin: 15px auto 0 auto;
+      width: 90%;
+      max-width: 900px;
+      color: #ccc;
+      text-align: center;
+      font-size: 18px;
+    }
+
+    #modal-close {
+      position: absolute;
+      top: 20px;
+      right: 35px;
+      color: #f1f1f1;
+      font-size: 40px;
+      font-weight: bold;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    #modal-close:hover {
+      color: #bbb;
+    }
+
+    .modal-arrow {
+      position: absolute;
+      top: 50%;
+      color: white;
+      font-size: 50px;
+      font-weight: bold;
+      cursor: pointer;
+      user-select: none;
+      padding: 0 15px;
+      border-radius: 3px;
+      background-color: rgba(0,0,0,0.3);
+      transform: translateY(-50%);
+      transition: background-color 0.3s ease;
+    }
+
+    .modal-arrow:hover {
+      background-color: rgba(0,0,0,0.6);
+    }
+
+    #modal-prev {
+      left: 15px;
+    }
+
+    #modal-next {
+      right: 15px;
+    }
   </style>
 </head>
 <body>
@@ -187,6 +302,7 @@
     <nav>
       <a href="#about">About Us</a>
       <a href="#services">Services</a>
+      <a href="#gallery">Gallery</a>
       <a href="#contact">Contact</a>
     </nav>
   </header>
@@ -242,10 +358,31 @@
     </div>
   </section>
 
+  <section id="gallery">
+    <h2>Gallery</h2>
+    <div class="gallery-container">
+      <img src="gallery1.jpg" alt="Gallery Image 1" onclick="openModal(0)" />
+      <img src="gallery2.jpg" alt="Gallery Image 2" onclick="openModal(1)" />
+      <img src="gallery3.jpg" alt="Gallery Image 3" onclick="openModal(2)" />
+      <img src="gallery4.jpg" alt="Gallery Image 4" onclick="openModal(3)" />
+      <img src="gallery5.jpg" alt="Gallery Image 5" onclick="openModal(4)" />
+      <img src="gallery6.jpg" alt="Gallery Image 6" onclick="openModal(5)" />
+      <img src="gallery7.jpg" alt="Gallery Image 7" onclick="openModal(6)" />
+      <img src="gallery8.jpg" alt="Gallery Image 8" onclick="openModal(7)" />
+      <img src="gallery9.jpg" alt="Gallery Image 9" onclick="openModal(8)" />
+      <img src="gallery10.jpg" alt="Gallery Image 10" onclick="openModal(9)" />
+      <img src="gallery11.jpg" alt="Gallery Image 11" onclick="openModal(10)" />
+      <img src="gallery12.jpg" alt="Gallery Image 12" onclick="openModal(11)" />
+      <img src="gallery13.jpg" alt="Gallery Image 13" onclick="openModal(12)" />
+      <img src="gallery14.jpg" alt="Gallery Image 14" onclick="openModal(13)" />
+      <img src="gallery15.jpg" alt="Gallery Image 15" onclick="openModal(14)" />
+    </div>
+  </section>
+
   <section id="contact">
     <h2>Contact Us</h2>
     <p>Ready to start your next project with RMK Gradba? Get in touch with us today!</p>
-    <p>Email: <a href="mailto:info@rmkgradba.com">info@rmkgradba.com</a></p>
+    <p>Email: <a href="mailto:rmkgradba@yahoo.com">rmkgradba@yahoo.com</a></p>
     <p>Phone: +389 78 233 925</p>
     <p>Location: Skopje, North Macedonia</p>
   </section>
@@ -253,6 +390,15 @@
   <footer>
     <p>&copy; 2025 RMK Gradba. All rights reserved.</p>
   </footer>
+
+  <!-- Modal -->
+  <div id="modal">
+    <span id="modal-close" onclick="closeModal()">&times;</span>
+    <img id="modal-content" src="" alt="Expanded Image" />
+    <div id="modal-caption"></div>
+    <a class="modal-arrow" id="modal-prev" onclick="changeImage(-1)">&#10094;</a>
+    <a class="modal-arrow" id="modal-next" onclick="changeImage(1)">&#10095;</a>
+  </div>
 
   <script>
     const servicesData = {
@@ -315,6 +461,65 @@
     function closeDetail() {
       document.getElementById('service-detail').style.display = 'none';
     }
+
+    // Gallery modal & scroll
+    const galleryImages = [
+      {src: 'gallery1.jpg', alt: 'Gallery Image 1'},
+      {src: 'gallery2.jpg', alt: 'Gallery Image 2'},
+      {src: 'gallery3.jpg', alt: 'Gallery Image 3'},
+      {src: 'gallery4.jpg', alt: 'Gallery Image 4'},
+      {src: 'gallery5.jpg', alt: 'Gallery Image 5'},
+      {src: 'gallery6.jpg', alt: 'Gallery Image 6'},
+      {src: 'gallery7.jpg', alt: 'Gallery Image 7'},
+      {src: 'gallery8.jpg', alt: 'Gallery Image 8'},
+      {src: 'gallery9.jpg', alt: 'Gallery Image 9'},
+      {src: 'gallery10.jpg', alt: 'Gallery Image 10'},
+      {src: 'gallery11.jpg', alt: 'Gallery Image 11'},
+      {src: 'gallery12.jpg', alt: 'Gallery Image 12'},
+      {src: 'gallery13.jpg', alt: 'Gallery Image 13'},
+      {src: 'gallery14.jpg', alt: 'Gallery Image 14'},
+      {src: 'gallery15.jpg', alt: 'Gallery Image 15'},
+    ];
+
+    let currentIndex = 0;
+
+    function openModal(index) {
+      currentIndex = index;
+      const modal = document.getElementById('modal');
+      const modalImg = document.getElementById('modal-content');
+      const caption = document.getElementById('modal-caption');
+
+      modal.style.display = 'block';
+      modalImg.src = galleryImages[currentIndex].src;
+      caption.textContent = galleryImages[currentIndex].alt;
+    }
+
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+
+    function changeImage(direction) {
+      currentIndex += direction;
+      if(currentIndex < 0) currentIndex = galleryImages.length - 1;
+      if(currentIndex >= galleryImages.length) currentIndex = 0;
+
+      const modalImg = document.getElementById('modal-content');
+      const caption = document.getElementById('modal-caption');
+      modalImg.src = galleryImages[currentIndex].src;
+      caption.textContent = galleryImages[currentIndex].alt;
+    }
+document.addEventListener('keydown', function(event) {
+  const modal = document.getElementById('modal');
+  if (modal.style.display === 'block') {  // Only if modal is open
+    if (event.key === 'ArrowLeft') {
+      showPrevImage();
+    } else if (event.key === 'ArrowRight') {
+      showNextImage();
+    } else if (event.key === 'Escape') {
+      closeModal();
+    }
+  }
+});
   </script>
 
 </body>
