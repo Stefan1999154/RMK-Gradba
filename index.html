@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>RMK Gradba | Low-Rise Construction</title>
   <style>
-    /* Make html and body take full height */
     html, body {
       height: 100%;
       margin: 0;
@@ -13,15 +12,12 @@
     }
 
     body {
-      /* Full page background image */
       background: url('background.jpg') no-repeat center center fixed;
       background-size: cover;
-
       font-family: Arial, sans-serif;
       color: #333;
     }
 
-    /* Transparent header */
     header {
       background: transparent;
       padding: 40px 20px;
@@ -31,7 +27,6 @@
       color: white;
     }
 
-    /* Remove header overlay */
     header::before {
       content: none;
     }
@@ -69,7 +64,7 @@
       padding: 40px;
       max-width: 1000px;
       margin: auto;
-      background: rgba(255, 255, 255, 0.9); /* white with some transparency */
+      background: rgba(255, 255, 255, 0.9);
       border-radius: 8px;
       box-shadow: 0 0 15px rgba(0,0,0,0.2);
       margin-bottom: 40px;
@@ -91,26 +86,43 @@
       padding: 20px;
       border-radius: 8px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      cursor: pointer;
       transition: box-shadow 0.3s ease;
     }
+
     .service-box:hover {
       box-shadow: 0 0 15px #1d3557;
     }
+
     .service-box h3 {
       margin-top: 0;
       color: #1d3557;
     }
 
-    /* Detail area styles */
+    .view-button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      background-color: #1d3557;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+    }
+
+    .view-button:hover {
+      background-color: #163150;
+    }
+
     #service-detail {
       margin-top: 40px;
       background: white;
       padding: 30px;
       border-radius: 8px;
       box-shadow: 0 0 12px rgba(0,0,0,0.15);
-      display: none; /* hidden by default */
+      display: none;
     }
+
     #service-detail h3 {
       margin-top: 0;
       color: #1d3557;
@@ -122,6 +134,7 @@
       margin-top: 15px;
       flex-wrap: wrap;
     }
+
     #detail-images img {
       width: 48%;
       height: auto;
@@ -134,6 +147,7 @@
       #detail-images {
         flex-direction: column;
       }
+
       #detail-images img {
         width: 100% !important;
         margin-bottom: 15px;
@@ -151,6 +165,7 @@
       cursor: pointer;
       font-size: 35px;
     }
+
     #close-detail:hover {
       background-color: #163150;
     }
@@ -180,40 +195,45 @@
     <h2>About Us</h2>
     <p>
       RMK Gradba is a professional construction company with extensive experience in low-rise infrastructure projects.
-      We specialize in the construction and maintenance of public and private infrastructure, delivering reliable and high-quality services across the region.
+      We specialize in the construction and maintenance of public and private infrastructure, delivering reliable and high-quality services across the region. With over 20 years of experience, our company has successfully completed more than 200 projects. Our highly qualified team of engineers, workers, and modern machinery enables us to execute projects of all scales quickly and efficiently.
     </p>
   </section>
 
   <section id="services">
     <h2>Our Services</h2>
     <div class="services">
-      <div class="service-box" onclick="showService('stormwater')">
+      <div class="service-box">
         <h3>Stormwater Drainage Systems</h3>
         <p>Design and installation of efficient drainage systems to manage rainwater and prevent flooding.</p>
+        <button class="view-button" onclick="showService('stormwater')">View More</button>
       </div>
-      <div class="service-box" onclick="showService('sanitary')">
+      <div class="service-box">
         <h3>Sanitary Sewage Systems</h3>
         <p>Construction and repair of sanitary sewer lines for residential, commercial, and municipal use.</p>
+        <button class="view-button" onclick="showService('sanitary')">View More</button>
       </div>
-      <div class="service-box" onclick="showService('concrete')">
+      <div class="service-box">
         <h3>Concrete Block Paving</h3>
         <p>Street paving with high-quality concrete blocks for long-lasting and aesthetic urban design.</p>
+        <button class="view-button" onclick="showService('concrete')">View More</button>
       </div>
-      <div class="service-box" onclick="showService('street')">
+      <div class="service-box">
         <h3>Street Construction & Asphalt</h3>
         <p>Complete street construction including excavation, base prep, and professional asphalt paving.</p>
+        <button class="view-button" onclick="showService('street')">View More</button>
       </div>
-      <div class="service-box" onclick="showService('water')">
+      <div class="service-box">
         <h3>Water Supply Networks</h3>
         <p>Installation of reliable water distribution systems for urban and rural developments.</p>
+        <button class="view-button" onclick="showService('water')">View More</button>
       </div>
-      <div class="service-box" onclick="showService('other')">
+      <div class="service-box">
         <h3>Other Low-Rise Works</h3>
         <p>Comprehensive civil works including sidewalks, curbs, retaining walls, and related infrastructure.</p>
+        <button class="view-button" onclick="showService('other')">View More</button>
       </div>
     </div>
 
-    <!-- Service detail area -->
     <div id="service-detail">
       <h3 id="detail-title"></h3>
       <p id="detail-text"></p>
@@ -225,7 +245,7 @@
   <section id="contact">
     <h2>Contact Us</h2>
     <p>Ready to start your next project with RMK Gradba? Get in touch with us today!</p>
-    <p>Email: <a href="mailto:rmkgradba@yahoo.com">info@rmkgradba.com</a></p>
+    <p>Email: <a href="mailto:info@rmkgradba.com">info@rmkgradba.com</a></p>
     <p>Phone: +389 78 233 925</p>
     <p>Location: Skopje, North Macedonia</p>
   </section>
@@ -279,11 +299,8 @@
 
       title.textContent = service.title;
       text.textContent = service.text;
-
-      // Clear previous images
       imagesContainer.innerHTML = '';
 
-      // Add each image
       service.images.forEach(src => {
         const img = document.createElement('img');
         img.src = src;
@@ -292,7 +309,6 @@
       });
 
       detail.style.display = 'block';
-
       detail.scrollIntoView({ behavior: 'smooth' });
     }
 
